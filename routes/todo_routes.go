@@ -7,4 +7,6 @@ import (
 
 func RegisterTodoRoutes(router *gin.Engine) {
 	router.GET("/todos", controllers.GetTodos)
+	router.POST("/todos", controllers.CreateTodo)
 }
+
