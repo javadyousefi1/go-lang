@@ -19,6 +19,15 @@ func GetTodos(c *gin.Context) {
 	c.JSON(http.StatusOK, todos)
 }
 
+// CreateTodo godoc
+// @Summary Create a new todo
+// @Description Create a new todo item with title and completed status
+// @Accept json
+// @Produce json
+// @Param todo body models.Todo true "Create Todo"
+// @Success 201 {object} models.Todo
+// @Router /todos [post]
+
 func CreateTodo(c *gin.Context) {
 	var todo models.Todo
 	// Validates based on binding tags

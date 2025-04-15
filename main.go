@@ -1,4 +1,10 @@
+// @title Todo API
+// @version 1.0
+// @description Simple API to manage todos
+// @host localhost:8080
+// @BasePath /
 package main
+
 
 import (
 	"github.com/gin-gonic/gin"
