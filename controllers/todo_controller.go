@@ -1,11 +1,10 @@
 package controllers
 
 import (
-	"net/http"
-
 	"github.com/gin-gonic/gin"
 	"github.com/javadyousefi1/go-lang/config"
 	"github.com/javadyousefi1/go-lang/models"
+	"net/http"
 )
 
 func GetTodos(c *gin.Context) {
@@ -22,10 +21,12 @@ func GetTodos(c *gin.Context) {
 
 func CreateTodo(c *gin.Context) {
 	var todo models.Todo
-
-	// Bind JSON to struct
+	// Validates based on binding tags
 	if err := c.ShouldBindJSON(&todo); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		c.JSON(http.StatusBadRequest, gin.H{
+			"error":   "Invalid input",
+			"details": err.Error(),
+		})
 		return
 	}
 
