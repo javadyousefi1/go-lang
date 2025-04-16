@@ -1,0 +1,60 @@
+basePath: /
+definitions:
+  models.Todo:
+    properties:
+      completed:
+        type: boolean
+      id:
+        type: integer
+      title:
+        type: string
+    required:
+    - completed
+    - title
+    type: object
+host: localhost:8080
+info:
+  contact: {}
+  description: Simple API to manage todos
+  title: Todo API
+  version: "1.0"
+paths:
+  /todos:
+    get:
+      consumes:
+      - application/json
+      description: Retrieve all todo items from the database
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: List of Todos
+          schema:
+            items:
+              $ref: '#/definitions/models.Todo'
+            type: array
+      summary: Get all todos
+      tags:
+      - Todos
+    post:
+      consumes:
+      - application/json
+      description: Create a new todo with title and status
+      parameters:
+      - description: Todo to create
+        in: body
+        name: todo
+        required: true
+        schema:
+          $ref: '#/definitions/models.Todo'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/models.Todo'
+      summary: Create a todo
+      tags:
+      - Todos
+swagger: "2.0"

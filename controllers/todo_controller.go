@@ -7,6 +7,14 @@ import (
 	"net/http"
 )
 
+// GetTodos godoc
+// @Summary Get all todos
+// @Description Retrieve all todo items from the database
+// @Tags Todos
+// @Accept  json
+// @Produce  json
+// @Success 200 {array} models.Todo "List of Todos"
+// @Router /todos [get]
 func GetTodos(c *gin.Context) {
 	var todos []models.Todo
 	result := config.DB.Find(&todos)
@@ -20,14 +28,14 @@ func GetTodos(c *gin.Context) {
 }
 
 // CreateTodo godoc
-// @Summary Create a new todo
-// @Description Create a new todo item with title and completed status
-// @Accept json
-// @Produce json
-// @Param todo body models.Todo true "Create Todo"
-// @Success 201 {object} models.Todo
-// @Router /todos [post]
-
+// @Summary      Create a todo
+// @Description  Create a new todo with title and status
+// @Tags         Todos
+// @Accept       json
+// @Produce      json
+// @Param        todo  body  models.Todo  true  "Todo to create"
+// @Success      201   {object}  models.Todo
+// @Router       /todos [post]
 func CreateTodo(c *gin.Context) {
 	var todo models.Todo
 	// Validates based on binding tags
