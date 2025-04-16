@@ -1,6 +1,6 @@
 package models
 
-// APIResponse represents a standard API response structure
+// @Description This is all api response structure
 type APIResponse struct {
 	Status  int         `json:"status"`           // HTTP status code
 	Data    interface{} `json:"data,omitempty"`   // Response data
