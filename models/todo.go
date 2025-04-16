@@ -4,7 +4,7 @@ package models
 // @Description Represents a task with title and completion status
 
 type Todo struct {
-	ID        uint   `json:"id" gorm:"primaryKey"`
+	ID        uint   `json:"id" gorm:"primaryKey;autoIncrement"`
 	Title     string `json:"title" binding:"required"`
 	Completed bool   `json:"completed" binding:"required"`
 }
