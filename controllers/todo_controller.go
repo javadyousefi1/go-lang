@@ -20,7 +20,7 @@ func GetTodos(c *gin.Context) {
 	result := config.DB.Find(&todos)
 
 	if result.Error != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"error": result.Error.Error()})
+		c.JSON(http.StatusInternalServerError, models.ErrorResponse{Error: result.Error.Error()})
 		return
 	}
 
@@ -54,7 +54,7 @@ func CreateTodo(c *gin.Context) {
 	result := config.DB.Create(&todo)
 
 	if result.Error != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"error": result.Error.Error()})
+		c.JSON(http.StatusInternalServerError, models.ErrorResponse{Error: result.Error.Error()})
 		return
 	}
 
@@ -89,7 +89,7 @@ func DeleteTodo(c *gin.Context) {
 		if result.Error.Error() == "record not found" {
 			c.JSON(http.StatusNotFound, gin.H{"error": "Todo not found"})
 		} else {
-			c.JSON(http.StatusInternalServerError, gin.H{"error": result.Error.Error()})
+			c.JSON(http.StatusInternalServerError, models.ErrorResponse{Error: result.Error.Error()})
 		}
 		return
 	}
@@ -99,7 +99,7 @@ func DeleteTodo(c *gin.Context) {
 
 	if result.Error != nil {
 		// If an error occurs during deletion, return a 500 error
-		c.JSON(http.StatusInternalServerError, gin.H{"error": result.Error.Error()})
+		c.JSON(http.StatusInternalServerError, models.ErrorResponse{Error: result.Error.Error()})
 		return
 	}
 
