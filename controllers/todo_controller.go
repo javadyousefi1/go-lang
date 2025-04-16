@@ -24,7 +24,11 @@ func GetTodos(c *gin.Context) {
 		return
 	}
 
-	c.JSON(http.StatusOK, todos)
+	c.JSON(http.StatusOK, models.APIResponse{
+		Status:  http.StatusOK,
+		Data:    todos,
+		Message: "get all of todos successfully",
+	})
 }
 
 // CreateTodo godoc
@@ -54,7 +58,11 @@ func CreateTodo(c *gin.Context) {
 		return
 	}
 
-	c.JSON(http.StatusCreated, todo)
+	c.JSON(http.StatusCreated, models.APIResponse{
+		Status:  http.StatusCreated,
+		Data:    todo,
+		Message: "Todo Created successfully",
+	})
 }
 
 // DeleteTodo godoc
@@ -96,5 +104,9 @@ func DeleteTodo(c *gin.Context) {
 	}
 
 	// Successfully deleted, return a 204 No Content
-	c.Status(http.StatusOK)
+	c.JSON(http.StatusOK, models.APIResponse{
+		Status:  http.StatusOK,
+		Data:    todo,
+		Message: "Todos deleted successfully",
+	})
 }
